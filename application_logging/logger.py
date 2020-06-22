@@ -1,5 +1,6 @@
 from datetime import datatime
 
+
 class App_Logger:
     def __init__(self):
         pass
