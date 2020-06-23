@@ -75,4 +75,36 @@ class Preprocessor:
                                   method of the Preprocessor class. Exception: '+ str(e))
             self.logger_object.log(self.file_object, "Label Separation Unsuccessful. Exited the separate_label_feature
                                   method of the Preprocessor class")
-            raise Exception()                                            
+            raise Exception()
+
+
+    def is_null_present(self,data):
+        """
+           Method Name : is_null_present
+           Description : This method checks if there are any null values in the df
+           Output : Returns true if null values present in the DataFrame, False if not
+           On Failure : Raise Exception
+        """
+        self.logger_object.log(self.file_object, 'Entered the is_null_present method of the Preprocessor class')
+        self.null_present = False
+        self.cols_with_missing_values=[]
+        try:
+            self.null_counts=data.isna().sum()
+            for i in range(len(self.null_counts)):
+                if self.null_counts[i]>0:
+                    self.null_present=True
+                    self.cols_with_missing_values.append(slef.cols[i])
+            if(self.null_present): #write the logs to see which columns have null values
+                self.dataframe_with_null = pd.DataFrame()
+                self.dataframe_with_null['columns'] = data.columns
+                self.dataframe_with_null['missing values count'] = np.asarray(data.isna().sum())
+                self.dataframe_with_null.to_csv('preprocessing_data/null_values.csv') # storing nulls cols info to a file
+            self.logger_object.log(self.file_object, 'Finding missing values is a success. Data written to the null values file. Exited the is_null_present method of the Preprocessor class')
+            return self.null_present, self.cols_with_missing_values
+        except Exception as e:
+            self.logger_object.log(self.file_object,'Exception occured in is_null_present method of the Preprocessor class. Excetion message: '+str(e))
+            self.logger_object.log(self.file_object,'Finding missing values failed. Exited the is_null_present method of the Preprocessor class')
+            raise Exception()
+
+
+    def impute_missing_values(self, data, cols_with_missing_values):        
