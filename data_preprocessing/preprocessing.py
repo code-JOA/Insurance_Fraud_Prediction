@@ -144,3 +144,25 @@ class Preprocessor:
                           'number_of_vehicles_involved', 'bodily_injuries', 'witnesses', 'injury_claim',
                           'property_claim',
                           'vehicle_claim']]
+        try:
+            self.scaler = StandardScaler()
+            self.scaled_data = self.scaler.fit_transform(self.num_df)
+            self.scaled_num_df = pd.DataFrame(data=self.scaled_data, columns=self.num_df.columns , index=self.data.index)
+            self.data.drop(columns=self.scaled_num_df.columns, inplace=True)
+            self.data = pd.concat([self.scaled_num_df, self.data], axis=1)
+
+            self.logger_object.log(self.file_object, "scaling for numerical values successful. Exited the scale_numerical_columns method of the Preprocesor class")
+            return self.data
+        except Exception as e:
+            self.logger_object.log(self.file_object,"Exception occured in scale_numerical_columns method of the Preproccesor class. Exception message: " + str(e))
+            self.logger_object.log(self.file_object, "scaling for numerical columns failed. Exited the scale_numerical_columns method of the Preprocessor class")
+            raise Exception()
+
+
+    def encode_categorical_columns(self,data):
+        """
+        Method Name: encode_categorical_columns
+        Description: This method encodes the categorical values to numeric values.
+        Output: dataframe with categorical values converted to numerical values
+        On Failure: Raise Exception
+        """
