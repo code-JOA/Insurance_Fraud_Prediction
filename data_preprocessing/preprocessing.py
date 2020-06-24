@@ -166,3 +166,46 @@ class Preprocessor:
         Output: dataframe with categorical values converted to numerical values
         On Failure: Raise Exception
         """
+        self.logger_object.log(self.file_object, 'Entered the encode_categorical_columns method of the Preprocesor class')
+        self.data=data
+        try:
+            self.cat_df = self.data.select_dtypes(include=['object']).copy()
+            self.cat_df['policy_csl'] = self.cat_df['policy_csl'].map({"100/300":1 , "250/500":2.5 , "500/1000":5})
+            self.cat_df['insured_education_level'] = self.cat_df['insured_education_level'].map(
+            {"JD":1,"High School":2,"College":3, "Masters":4, "Associate":5, "MD":6 , "PhD":7})
+            self.cat_df['incident_severity'] = self.cat_df['incident_severity'].map(
+            {"Trivial Damage":1, "Minor Damage":2, "Major Damage":3 , "Total Loss":4})
+            self.cat_df['insured_sex'] = self.cat_df['insured_sex'].map({"FEMALE":0, "MALE":1})
+            self.cat_df['propert_damage'] = self.cat_df['property_damage'].map({"NO":0, "YES":1})
+            self.cat_df['police_report_available'] = self.cat_df['police_report_available'].map("NO":0, "YES":1})
+            try:
+                # code block for training
+                self.cat_df['fraud_reported'] = self.cat_df['fraud_reported'].map({"N":0,"Y":1})
+                self.cols_to_drop=['policy_csl','insured_education_level','incident_severity','insured_sex',
+                'property_damage','police_report_available','fraud_reported']
+            except:
+                # code block for Prediction
+                self.cols_to_drop = ['policy_csl','insured_education_level','incident_severity','insured_sex',
+                'property_damage','police_report_available','fraud_reported']
+            # Using dummy encoding to encode the categorical columns to numerical
+            for col in self.cat_df.drop(columns=self.cols_to_drop).columns:
+                self.cat_df = pd.get_dummies(self.cat_df , columns=[col] , prefix=[col] , drop_first=True)
+
+            self.data.drop(columns=self.data.select_dtypes(include=["object"]).columns , inplace=True)
+            self.data = pd.concat([self.cat_df ,self.data] , axis=1)
+            self.logger_object.log(self.file_object, "encoding for categorical values successful.Exited the encode_categorical_columns of the Preprocesor class")
+            return slef.data
+
+        except Exception as e:
+            self.logger_object.log(self.file_object,'Exception occured in encode_categorical_columns method of the Preprocessor class. Exception message: ' + str(e))
+            self.logger_object.log(self.file_object, "encoding for categorical columns failed. Exited the encode_categorical_columns method of the Preprocessor class")
+            raise Exception()
+
+
+    def handle_imbalanced_dataset(self,x,y):
+        """
+        Method Name: handle_imbalanced_dataset
+        Description: This method handles the imbalanced dataset to make it a balanced one.
+        Output: new balanced feature and target columns
+        On Failure: Raise Exception
+        """
