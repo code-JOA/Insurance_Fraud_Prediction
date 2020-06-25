@@ -194,7 +194,7 @@ class Preprocessor:
             self.data.drop(columns=self.data.select_dtypes(include=["object"]).columns , inplace=True)
             self.data = pd.concat([self.cat_df ,self.data] , axis=1)
             self.logger_object.log(self.file_object, "encoding for categorical values successful.Exited the encode_categorical_columns of the Preprocesor class")
-            return slef.data
+            return self.data
 
         except Exception as e:
             self.logger_object.log(self.file_object,'Exception occured in encode_categorical_columns method of the Preprocessor class. Exception message: ' + str(e))
@@ -209,3 +209,17 @@ class Preprocessor:
         Output: new balanced feature and target columns
         On Failure: Raise Exception
         """
+        self.logger_object.log(self.file_object ,
+               "Entered the handle_imbalanced_dataset method of the Preprocessor class")
+        try:
+            self.rdsmple = RandomOverSampler()
+            self.x_sampled,self.y_sampled = self.rdsmple.fit(x,y)
+            self.logger_object.log(self.file_object,
+                        "dataset balancing successful. Exited the handle_imbalanced_dataset method of the Preprocessor class")
+            return self.x_sampled , self.y_sampled
+        except Exception as e:
+            self.logger_object.log(self.file_object,
+                    "Exception occured in the handle_imbalanced_dataset method of the Preprocessor class. Exception message: " + str(e))
+            self.logger_object.log(self.file_object,
+                     "dataset balancing failed. Exited the handle_imbalanced_dataset method of the Preprocessor class")
+            raise Exception()                                 
