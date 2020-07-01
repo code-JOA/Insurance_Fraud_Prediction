@@ -23,6 +23,7 @@ class Preprocessor:
         Output: A pandas DataFrame after removing the spaces.
         On Failure: Raise Exception
         """
+        
         self.logger_object.log(self.file_object, 'Entered the remove_unwanted_spaces method of the Preprocessor class')
         self.data = data
 
@@ -47,6 +48,7 @@ class Preprocessor:
                 Output: A pandas DataFrame after removing the specified columns.
                 On Failure: Raise Exception
         """
+
         self.logger_object.log(self.file_object, 'Entered the remove_columns method of the Preprocessor class')
         self.data=data
         self.columns=columns
@@ -69,6 +71,7 @@ class Preprocessor:
                         Output: Returns two separate Dataframes, one containing features and the other containing Labels .
                         On Failure: Raise Exception
         """
+
         self.logger_object.log(self.file_object, 'Entered the separate_label_feature method of the Preprocessor class')
         try:
             self.X=data.drop(labels=label_column_name,axis=1) # drop the columns specified and separate the feature columns
@@ -90,6 +93,7 @@ class Preprocessor:
                                         returns the list of columns for which null values are present.
                                 On Failure: Raise Exception                       
         """
+
         self.logger_object.log(self.file_object, 'Entered the is_null_present method of the Preprocessor class')
         self.null_present = False
         self.cols_with_missing_values=[]
@@ -120,6 +124,7 @@ class Preprocessor:
                                         Output: A Dataframe which has all the missing values imputed.
                                         On Failure: Raise Exception
         """
+        
         self.logger_object.log(self.file_object, 'Entered the impute_missing_values method of the Preprocessor class')
         self.data= data
         self.cols_with_missing_values=cols_with_missing_values
@@ -176,6 +181,7 @@ class Preprocessor:
         Output: dataframe with categorical values converted to numerical values
         On Failure: Raise Exception                       
         """
+
         self.logger_object.log(self.file_object, 'Entered the encode_categorical_columns method of the Preprocessor class')
 
         self.data=data
@@ -221,6 +227,7 @@ class Preprocessor:
         Output: new balanced feature and target columns
         On Failure: Raise Exception
         """
+
         self.logger_object.log(self.file_object,
                                'Entered the handle_imbalanced_dataset method of the Preprocessor class')
 
