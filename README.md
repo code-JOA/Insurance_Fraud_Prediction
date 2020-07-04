@@ -7,10 +7,6 @@
 
 **Joshua Owusu Ankomah**
 
-<a href="mailto:josh_billion@yahoo.com" rel="Email Me!!">![Foo](img src="https://img.icons8.com/bubbles/100/000000/secured-letter.png)]</a>
-
-
-
 
 # This is an end to end project with deployment with heroku≈
 
