@@ -12,6 +12,7 @@
 
 
 # Goal
+
 # The Goal is to build a model to help the client to know whether a claim is genuine or not . 
 
 
