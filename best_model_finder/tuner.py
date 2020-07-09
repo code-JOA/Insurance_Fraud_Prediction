@@ -148,8 +148,7 @@ class Model_Finder:
 
         except Exception as e:
             self.logger_object.log(self.file_object,
-                                   'Exception occured in get_best_model method of the Model_Finder class. Exception message:  ' + str(
-                                       e))
+                                   'Exception occured in get_best_model method of the Model_Finder class. Exception message:  ' + str(e))
             self.logger_object.log(self.file_object,
                                    'Model Selection Failed. Exited the get_best_model method of the Model_Finder class')
             raise Exception()

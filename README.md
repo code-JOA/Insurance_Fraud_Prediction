@@ -1,5 +1,4 @@
 <!-- #region -->
-# Note : This Project is still a work in Progress. Thank you for your patience.
 
 # Insurance_Fraud_Prediction
 
@@ -8,14 +7,14 @@
 **Joshua Owusu Ankomah**
 
 
-# This is an end to end project with deployment with heroku≈
+# This is an end to end project with deployment with heroku.
 
 
 # Goal
 
-# The Goal is to build a model to help the client to know whether a claim is genuine or not . 
+# The Goal is to build a model to help the client to know whether a claim is genuine or not. 
 
-
+# Please read the documentation file to see the project architecture. 
 
 
 ### Connect with me
@@ -31,7 +30,7 @@
 
 
 ### About Me
-[<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/linkedin.png">](https://www.linkedin.com/in/joshua-owusu-ankomah-2b5a9898/)  [<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/github.png">](https://github.com/code-JOA)  [<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/facebook.png">]() [<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/instagram-new.png">](https://www.instagram.com/jay_rockerfella/)
+[<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/linkedin.png">](https://www.linkedin.com/in/joshua-owusu-ankomah-2b5a9898/)  [<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/github.png">](https://github.com/code-JOA)  [<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/facebook.png">](https://www.facebook.com/joshua.owusuankomah) [<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/instagram-new.png">](https://www.instagram.com/jay_rockerfella/)
 
 
 <!-- #endregion -->
